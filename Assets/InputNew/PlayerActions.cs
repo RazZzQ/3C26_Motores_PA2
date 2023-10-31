@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerActions : MonoBehaviour
 {
-    private Rigidbody2D rb2D;
+    public Rigidbody2D rb2D;
     public float velocityModifier = 5;
     private Vector2 _distance;
     float direccion;
@@ -25,5 +25,7 @@ public class PlayerActions : MonoBehaviour
         float Movimiento = callbackContext.ReadValue<float>();
         Debug.Log(Movimiento);
         direccion = Movimiento * velocityModifier;
+
+        rb2D.velocity = new Vector2(0,direccion);
     }
 }
