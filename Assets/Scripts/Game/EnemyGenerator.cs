@@ -1,17 +1,18 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CandyGenerator : MonoBehaviour
+
+public class EnemyGenerator : MonoBehaviour
 {
-    public static CandyGenerator instance;
-    public List<GameObject> Candies = new List<GameObject>();
+    public static EnemyGenerator instance;
+    public List<GameObject> Enemys = new List<GameObject>();
     private float time_to_create = 4f;
     private float actual_time = 0f;
     private float limitSuperior;
     private float limitInferior;
-    public List<GameObject> actual_candies = new List<GameObject>();
+    public List<GameObject> Actual_Enemys = new List<GameObject>();
 
     void Awake()
     {
@@ -33,11 +34,11 @@ public class CandyGenerator : MonoBehaviour
         actual_time += Time.deltaTime;
         if (time_to_create <= actual_time)
         {
-            GameObject candy = Instantiate(Candies[Random.Range(0, Candies.Count)],
+            GameObject candy = Instantiate(Enemys[Random.Range(0, Enemys.Count)],
             new Vector3(transform.position.x, Random.Range(limitInferior, limitSuperior), 0f), Quaternion.identity);
             candy.GetComponent<Rigidbody2D>().velocity = new Vector2(-2f, 0);
             actual_time = 0f;
-            actual_candies.Add(candy);
+            Actual_Enemys.Add(candy);
         }
     }
 
@@ -48,22 +49,22 @@ public class CandyGenerator : MonoBehaviour
         limitSuperior = (bounds.y * 0.9f);
     }
 
-    public void ManageCandy(CandyController candy_script, PlayerMovement player_script = null)
+    public void ManageEnemy(EnemyController Enemy_script, PlayerMovement player_script = null)
     {
         if (player_script == null)
         {
-            Destroy(candy_script.gameObject);
+            Destroy(Enemy_script.gameObject);
             return;
         }
-        int Points = player_script.player_points;
-        int Points_changer = candy_script.PointsChange;
-        Points += Points_changer;
-        print(Points);
-        if (Points <= 0)
+        int lives = player_script.player_lives;
+        int live_changer = Enemy_script.lifeChanges;
+        lives -= live_changer;
+        print(lives);
+        if (lives <= 0)
         {
             SceneManager.LoadScene("GameOver");
         }
-        player_script.player_points = Points;
-        Destroy(candy_script.gameObject);
+        player_script.player_lives = lives;
+        Destroy(Enemy_script.gameObject);
     }
 }
