@@ -14,7 +14,7 @@ public class GameOverController : MonoBehaviour
     {
         btnPlay.onClick.AddListener(() => ReturnMenu());
         CurrentScore.text = "Score: " + Score.ScoreActual.ToString("000");
-        MaxScore.text = "ScoreMax: " + Score.actualizarScore().ToString(); 
+        MaxScore.text = "ScoreMax: " + Score.actualizarScore().ToString("000"); 
     }
 
     void ReturnMenu()

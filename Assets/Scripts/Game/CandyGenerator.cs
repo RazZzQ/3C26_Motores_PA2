@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CandyGenerator : MonoBehaviour
 {
     public static CandyGenerator instance;
+    public SO_Puntaje score;
     public List<GameObject> Candies = new List<GameObject>();
     private float time_to_create = 4f;
     private float actual_time = 0f;
@@ -55,15 +56,12 @@ public class CandyGenerator : MonoBehaviour
             Destroy(candy_script.gameObject);
             return;
         }
-        int Points = player_script.player_points;
+
+        int Points = score.ScoreActual;
         int Points_changer = candy_script.PointsChange;
         Points += Points_changer;
         print(Points);
-        if (Points <= 0)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-        player_script.player_points = Points;
+        score.ScoreActual = Points;
         Destroy(candy_script.gameObject);
     }
 }
