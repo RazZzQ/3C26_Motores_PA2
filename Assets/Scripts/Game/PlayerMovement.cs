@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
             EnemyGenerator.instance.ManageEnemy(other.gameObject.GetComponent<EnemyController>(), this);
             if (player_lives == 0)
             {
-                puntosactuales = PlayerPrefs.GetInt("player_points");
+                puntosactuales = PlayerPrefs.GetInt("player_points", player_points);
             }
         }
     }

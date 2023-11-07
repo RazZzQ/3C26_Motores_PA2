@@ -9,7 +9,7 @@ public class SO_Puntaje : ScriptableObject
     public int ScoreActual = 0;
     public int maxScore = 0;
     // Start is called before the first frame update
-    public void Start()
+    public void Awake()
     {
         ScoreActual = instance.puntosactuales;
     }
