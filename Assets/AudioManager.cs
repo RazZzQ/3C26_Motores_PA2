@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     }
     private void Update()
     {
+        MusicChannel.UpdateVolumen(newvolume);
     }
     // Update is called once per frame
     private void FixedUpdate()
@@ -30,7 +31,6 @@ public class AudioManager : MonoBehaviour
         {
             MusicChannel.unmutechannel();
         }
-        MusicChannel.UpdateVolumen(newvolume);
 
         MusicChannel.getvolume(ref Volumen);
     }
