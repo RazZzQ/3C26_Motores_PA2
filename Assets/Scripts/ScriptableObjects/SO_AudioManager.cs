@@ -24,6 +24,7 @@ public class SO_AudioManager : ScriptableObject
     }
     public void UpdateVolumen(float newvolume)
     {
+        Debug.Log("algo");
         newvolume = Mathf.Log10(newvolume) * 20f;
         Mixer.SetFloat(AudioParameter, newvolume);
     }

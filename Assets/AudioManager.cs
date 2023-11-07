@@ -18,10 +18,10 @@ public class AudioManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+
     }
     private void Update()
     {
-        MusicChannel.UpdateVolumen(newvolume);
     }
     // Update is called once per frame
     private void FixedUpdate()
@@ -30,6 +30,8 @@ public class AudioManager : MonoBehaviour
         {
             MusicChannel.unmutechannel();
         }
+        MusicChannel.UpdateVolumen(newvolume);
+
         MusicChannel.getvolume(ref Volumen);
     }
 }
